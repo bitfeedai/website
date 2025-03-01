@@ -21,7 +21,7 @@ export default function Home() {
                   <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                   </h2>
                   <p className="text-base sm:text-lg text-gray-500 leading-relaxed">
-                    Docs are currently under contruction.
+                    Docs are currently under construction.
                     Please come back later and/or follow us on &nbsp;
                     <Link href="https://x.com/bitfeedai" className="icon-gradient">
                       <span className="font-bold">x.com</span> &nbsp;
