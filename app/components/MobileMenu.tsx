@@ -28,7 +28,7 @@ export function MobileMenu() {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+      <SheetContent side="right" className="pt-12 w-[300px] sm:w-[400px]">
         <nav className="flex flex-col gap-4">
           {navItems.map((item, index) => (
             <Link
