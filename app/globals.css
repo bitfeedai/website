@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange: 13, 83%, 43%;
+  --purple: 320, 77%, 37%;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))), rgb(var(--background-start-rgb));
+}
+
+.grid-background {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.icon-gradient {
+  @apply bg-gradient-to-br from-orange-500 to-purple-600;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.button-gradient-mixed {
+  @apply bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.button-gradient-orange {
+  @apply bg-gradient-to-r from-orange-600 to-orange-300 hover:from-orange-700 hover:to-orange-400 text-white font-bold py-2 px-4 rounded;
+}
+
+/* .text-gradient-mixed {
+  @apply bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent;
+} */
+
+.text-gradient-mixed {
+  @apply bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent pb-1;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: var(--orange);
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: var(--purple);
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--orange);
+
+    --radius: 0.5rem;
+  }
+}
