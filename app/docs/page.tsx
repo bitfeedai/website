@@ -1,4 +1,4 @@
-import Header from "../components/Navigation"
+import Header from "../components/Header"
 import CallToAction from "../components/CallToAction"
 import Footer from "../components/Footer"
 import { Badge } from "@/components/ui/badge"

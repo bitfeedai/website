@@ -6,7 +6,7 @@ import { Button } from "../components/ui/Button"
 import { Menu } from "lucide-react"
 import { useState } from "react"
 import { WaitlistDialog } from "./WaitlistDialog"
-
+import WaitinglistBtn from "./WaitinglistBtn"
 
 const navItems = [
   { href: "/resources/about", label: "About" },
@@ -40,13 +40,14 @@ export function MobileMenu() {
               {item.label}
             </Link>
           ))}
-          <WaitlistDialog 
+          {/* <WaitlistDialog 
             trigger={
               <Button className="mt-4 button-gradient-mixed">
-                Get Started
+                Get Rect
               </Button>
             }
-          />
+          /> */}
+          <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} />
         </nav>
       </SheetContent>
     </Sheet>

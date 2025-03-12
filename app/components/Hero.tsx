@@ -1,6 +1,5 @@
 import { Button } from "./ui/Button"
-import { WaitlistDialog } from "./WaitlistDialog"
-
+import WaitinglistBtn from "./WaitinglistBtn"
 
 export default function Hero() {
   return (
@@ -14,13 +13,7 @@ export default function Hero() {
           The AI-powered hub to Discover, Build and Share Bits and Feeds
         </p>
         <div className="flex gap-8 justify-center">
-          <WaitlistDialog 
-            trigger={
-              <Button size="lg" variant="default">
-                Get Started
-              </Button>
-            }
-          />
+          <WaitinglistBtn buttonType={"default"} buttonText={"Launch 🚀"} />
         </div>
       </div>
     </section>
