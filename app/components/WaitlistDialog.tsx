@@ -3,6 +3,9 @@
 
 import { useState } from "react"
 import { Button } from "../../components/ui/button"
+import Link from "next/link"
+import Image from "next/image"
+
 import {
   Dialog,
   DialogContent,
@@ -37,6 +40,8 @@ export function WaitlistDialog({
   const [submitted, setSubmitted] = useState(false)
   const [source, setSource] = useState("")
 
+  const tempDescription = true;
+
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setLoading(true)
@@ -60,14 +65,29 @@ export function WaitlistDialog({
       <div onClick={() => setOpen(true)}>
         {trigger}
       </div>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-[425px] pt-10">
+
+        {
+          tempDescription ? (
+            <div className="flex flex-col items-center space-y-4 text-center">
+              We're launching soon! 🧑‍🚀 Follow us for the latest updates. Things are moving quickly.
+              <span className="bg-black p-3 rounded-full">
+                <Link href="https://x.com/bitfeedai" className="icon-gradient">
+                  <Image src="/social/x_dark.svg" alt="X Logo" width={20} height={20} />
+                </Link>
+              </span>
+            </div>
+          ) : (
+            <></>
+        )}
+        {/* <DialogHeader>
           <DialogTitle className="text-center">{title}</DialogTitle>
           <DialogDescription className="text-center">
             {description}
           </DialogDescription>
-        </DialogHeader>
-        {submitted ? (
+        </DialogHeader> */}
+
+        {/* {submitted ? (
           <div className="space-y-4 py-4 text-center">
             <h3 className="text-lg font-medium text-gray-900">Thank you for joining!</h3>
             <p className="text-gray-500">We'll be in touch soon.</p>
@@ -132,7 +152,7 @@ export function WaitlistDialog({
               </Button>
             </div>
           </form>
-        )}
+        )} */}
       </DialogContent>
     </Dialog>
   )
