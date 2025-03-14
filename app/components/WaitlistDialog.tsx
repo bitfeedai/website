@@ -3,9 +3,6 @@
 
 import { useState } from "react"
 import { Button } from "../../components/ui/button"
-import Link from "next/link"
-import Image from "next/image"
-
 import {
   Dialog,
   DialogContent,
@@ -15,13 +12,7 @@ import {
 } from "../../components/ui/dialog"
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/ui/select"
+
 
 interface WaitlistDialogProps {
   trigger: React.ReactNode;
@@ -29,35 +20,58 @@ interface WaitlistDialogProps {
   description?: string;
 }
 
-
 export function WaitlistDialog({ 
   trigger, 
-  title = "Get notified when we launch🔔", 
+  title = "Get notified when we launch🚀", 
   description = "We're launching soon. Be among the first to experience Bitfeed. We'll notify you when we're ready!" 
 }: WaitlistDialogProps) {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [source, setSource] = useState("")
-
-  const tempDescription = true;
+  const [message, setMessage] = useState("")
+  const [isError, setIsError] = useState(false)
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setLoading(true)
+    setMessage("")
+    setIsError(false)
 
     const formData = new FormData(event.currentTarget)
-    const email = formData.get("email")
+    const email = formData.get("email") as string
 
-    // Add your form submission logic here
-    // Example: await submitToAPI({ email, source })
-    console.log({ email, source }) // For testing
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, source }),
+      });
 
-    setLoading(false)
-    setSubmitted(true)
+      const data = await res.json();
+      
+      if (!res.ok) {
+        // Handle error responses
+        setIsError(true)
+        if (res.status === 400) {
+          setMessage(data.error || "Failed to subscribe. You may already be subscribed.");
+        } else {
+          setMessage(data.error || "An error occurred. Please try again later.");
+        }
+      } else {
+        // Success response
+        setMessage(data.message || "Successfully subscribed!");
+        setSubmitted(true)
+      }
+    } catch (error) {
+      setIsError(true)
+      setMessage("An unexpected error occurred. Please try again.");
+      console.error("Subscription error:", error);
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -67,35 +81,23 @@ export function WaitlistDialog({
       </div>
       <DialogContent className="sm:max-w-[425px] pt-10">
 
-        {
-          tempDescription ? (
-            <div className="flex flex-col items-center space-y-4 text-center">
-              We're launching soon! 🧑‍🚀 Follow us for the latest updates. Things are moving quickly.
-              <span className="bg-black p-3 rounded-full">
-                <Link href="https://x.com/bitfeedai" className="icon-gradient">
-                  <Image src="/social/x_dark.svg" alt="X Logo" width={20} height={20} />
-                </Link>
-              </span>
-            </div>
-          ) : (
-            <></>
-        )}
-        {/* <DialogHeader>
+        <DialogHeader>
           <DialogTitle className="text-center">{title}</DialogTitle>
           <DialogDescription className="text-center">
             {description}
           </DialogDescription>
-        </DialogHeader> */}
+        </DialogHeader>
 
-        {/* {submitted ? (
+        {submitted ? (
           <div className="space-y-4 py-4 text-center">
             <h3 className="text-lg font-medium text-gray-900">Thank you for joining!</h3>
-            <p className="text-gray-500">We'll be in touch soon.</p>
+            <p className="text-gray-500">{message || "We'll be in touch soon."}</p>
             <Button 
               onClick={() => {
                 setSubmitted(false)
                 setOpen(false)
                 setSource("") // Reset source for next time
+                setMessage("")
               }}
               variant="outline"
             >
@@ -115,26 +117,13 @@ export function WaitlistDialog({
                 required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="source">Where did you find us?</Label>
-              <Select
-                value={source}
-                onValueChange={setSource}
-                required
-              >
-                <SelectTrigger id="source" className="w-full bg-white">
-                  <SelectValue placeholder="Select an option" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectItem value="twitter">X</SelectItem>
-                  <SelectItem value="linkedin">LinkedIn</SelectItem>
-                  <SelectItem value="github">GitHub</SelectItem>
-                  <SelectItem value="friend">Friend/Colleague</SelectItem>
-                  <SelectItem value="search">Search Engine</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            
+            {message && (
+              <div className={`text-sm ${isError ? 'text-red-500' : 'text-green-500'} text-center`}>
+                {message}
+              </div>
+            )}
+          
             <div className="flex justify-end space-x-4 pt-2">
               <Button
                 type="button"
@@ -152,7 +141,7 @@ export function WaitlistDialog({
               </Button>
             </div>
           </form>
-        )} */}
+        )}
       </DialogContent>
     </Dialog>
   )
