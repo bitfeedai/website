@@ -8,10 +8,10 @@ export async function GET() {
   
       const body = await req.json();
       const email = body.email;
-      const source = body.source || ""; // Get how they found you
-      const role = body.role || ""; // Get the user's role
-      const socialUrl = body.socialUrl || ""; // Get the social profile link
-      const apply = body.apply || false; // Whether the user wants to be notified
+      const source = body.source || "";
+      const role = body.role || "";
+      const socialUrl = body.socialUrl || "";
+      const apply = body.apply || false;
   
       if (!email) {
         return new Response(JSON.stringify({ error: "Email is required" }), { status: 400 });
@@ -37,10 +37,10 @@ export async function GET() {
           email_address: email,
           status: "subscribed",
           merge_fields: {
-            SOURCE: source,                 // How did you find us
-            ROLE: role,                     // User's role
-            URL: socialUrl,                 // Social profile link
-            APPLY: apply ? "Yes" : "No",    // Whether they want to apply
+            SOURCE: source,
+            ROLE: role,
+            URL: socialUrl,
+            APPLY: apply ? "Yes" : "No",
           },
         }),
       });
