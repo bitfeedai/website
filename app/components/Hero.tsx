@@ -13,13 +13,7 @@ export default function Hero() {
           The AI-powered hub to Discover, Build and Share Bits and Feeds
         </p>
         <div className="flex gap-8 justify-center">
-          { /*
-            <WaitinglistBtn buttonType={"default"} buttonText={"Get Notified 🚀"} />
-          */}
-
-            <Button size="lg" variant={'default'}>
-              Waitinglist comming soon!
-            </Button>
+            {/* <WaitinglistBtn buttonType={"default"} buttonText={"Get Notified 🚀"} /> */}
         </div>
       </div>
     </section>

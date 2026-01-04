@@ -105,7 +105,7 @@ export default function Header() {
                       <GithubIcon className="w-6 h-6 text-gray-600 hover:text-gray-900 fill-current" />
                   </Link>
                   <div className="hidden md:inline-flex">
-                    <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} />
+                    {/* <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} /> */}
                   </div>
                   <MobileMenu />
               </div>
