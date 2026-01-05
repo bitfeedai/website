@@ -46,8 +46,9 @@ export async function POST(req: NextRequest) {
     // Get the email service (modular - can switch providers easily)
     const emailService = getEmailService();
 
-    // Send notification email to hello@bitfeed.ai
-    // We only send to the team, not to the user
+    // IMPORTANT: Only send notification email to hello@bitfeed.ai (team)
+    // We do NOT send confirmation emails to users - this is disabled
+    // The user's email is only used as replyTo in the notification email
     await emailService.sendWaitlistNotification({
       email,
       apply,

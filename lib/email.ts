@@ -117,13 +117,35 @@ class SMTPEmailService implements EmailService {
 
     const { subject, text, html } = getWaitlistEmailTemplate(data);
 
+    // IMPORTANT: Only send emails to hello@bitfeed.ai (team), NOT to the user
+    // The user's email is only used as replyTo so we can respond to them
     await sendEmail({
-      to: config.recipient,
+      to: config.recipient, // Always send to hello@bitfeed.ai, never to user
       subject,
       text,
       html,
       replyTo: data.email, // Allow replying directly to the user
     });
+
+    // NOTE: User confirmation emails are disabled for now
+    // If you need to send confirmation emails to users in the future, uncomment below:
+    /*
+    try {
+      const { getWaitlistConfirmationTemplate } = await import("./email-templates");
+      const { subject: confirmSubject, text: confirmText, html: confirmHtml } = 
+        getWaitlistConfirmationTemplate(data);
+      
+      await sendEmail({
+        to: data.email, // Send confirmation to user
+        subject: confirmSubject,
+        text: confirmText,
+        html: confirmHtml,
+      });
+    } catch (error) {
+      // Don't fail the main notification if confirmation fails
+      console.error("Failed to send confirmation email to user:", error);
+    }
+    */
   }
 }
 
