@@ -39,7 +39,7 @@ export function MobileMenu() {
               {item.label}
             </Link>
           ))}
-          {/* <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} /> */}
+          <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} />
         </nav>
       </SheetContent>
     </Sheet>

@@ -75,6 +75,7 @@ export default function Footer() {
                   FAQ
                 </Link>
               </li>
+              {/*
               <li>
               <Link 
                 href={`mailto:${encodeURIComponent('hello@bitfeed.ai')}?subject=${encodeURIComponent('Hello!')}`}
@@ -83,6 +84,7 @@ export default function Footer() {
                 Email
               </Link>
               </li>
+              */}
               <li>
                 <Link href="#" className="text-gray-600 pointer-events-none">
                   Discord
@@ -93,7 +95,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Connect</h4>
             
-            <div className="flex space-x-4 items-center">
+            <div className="flex space-x-4 items-center mb-3">
               <Link href="https://github.com/bitfeedai" className="icon-gradient">
                 <Github className="w-6 h-6" />
               </Link>
@@ -104,6 +106,7 @@ export default function Footer() {
                 <Linkedin className="w-6 h-6" />
               </Link>
             </div>
+            <p className="text-gray-400 text-sm">hello@bitfeed.ai</p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
