@@ -10,15 +10,32 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 5, 2, 6; /* Almost black with hint of purple */
+  --background-end-rgb: 8, 3, 9; /* Slightly lighter but still very dark */
+  --purple-tint-1: 12, 4, 14; /* Lighter purple tone */
+  --purple-tint-2: 18, 6, 20; /* Even lighter purple tone */
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))), rgb(var(--background-start-rgb));
+  background: 
+    linear-gradient(135deg, rgba(30, 10, 35, 0.6) 0%, rgba(15, 5, 18, 0.4) 50%, transparent 100%),
+    linear-gradient(225deg, rgba(25, 8, 30, 0.5) 0%, rgba(12, 4, 16, 0.3) 50%, transparent 100%),
+    linear-gradient(45deg, rgba(20, 6, 25, 0.4) 0%, transparent 60%),
+    linear-gradient(to bottom, rgb(var(--background-end-rgb)), rgb(var(--background-start-rgb)));
 }
 
 .grid-background {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+.dark .grid-background {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 .icon-gradient {
@@ -71,6 +88,38 @@ body {
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
+    --ring: var(--orange);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 320 60% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 320 55% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 320 55% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: var(--orange);
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: var(--purple);
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 320 30% 15%;
+    --muted-foreground: 215.4 16.3% 70%;
+
+    --accent: 320 40% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 320 30% 20%;
+    --input: 320 30% 20%;
     --ring: var(--orange);
 
     --radius: 0.5rem;

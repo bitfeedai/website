@@ -49,13 +49,13 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function Header() {
     return (
-      <header className="bg-white/80 backdrop-blur-sm shadow-sm">
+      <header className="bg-gradient-to-r from-[#050206] to-[#080309] sticky top-0 z-50 shadow-lg border-b border-purple-900/10">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
               {/* Logo - Left */}
               <div className="flex-shrink-0">
                   <Link href="/" className="flex items-center space-x-2">
                       <Image src="/logo.svg?height=32&width=32" alt="Bitfeed Logo" width={32} height={32} />
-                      <span className="text-2xl font-bold text-gray-900">Bitfeed</span>
+                      <span className="text-2xl font-bold text-white">Bitfeed</span>
                   </Link>
               </div>
   
@@ -65,24 +65,24 @@ export default function Header() {
                       <NavigationMenuItem>
                           <Link href="/#features" legacyBehavior passHref>
                               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                  <span className="text-lg text-gray-700">Building Blocks</span>
+                                  <span className="text-lg text-white">Building Blocks</span>
                               </NavigationMenuLink>
                           </Link>
                       </NavigationMenuItem>
                       <NavigationMenuItem>
                           <NavigationMenuTrigger>
-                            <span className="text-lg text-gray-700">Resources</span>
+                            <span className="text-lg text-white">Resources</span>
                           </NavigationMenuTrigger>
-                          <NavigationMenuContent className="bg-white">
+                          <NavigationMenuContent className="bg-gradient-to-br from-[#050206] to-[#080309] border border-purple-900/10">
                               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                                   {components.map((component) => (
                                       <ListItem
                                           key={component.title}
                                           title={component.title}
                                           href={component.href}
-                                          className="text-gray-700"
+                                          className="text-white"
                                       >
-                                        <span className="text-gray-600">{component.description}</span>
+                                        <span className="text-gray-300">{component.description}</span>
                                           
                                       </ListItem>
                                   ))}
@@ -92,7 +92,7 @@ export default function Header() {
                       <NavigationMenuItem>
                           <Link href="/docs" legacyBehavior passHref>
                               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                  <span className="text-lg text-gray-700">Documentation</span>
+                                  <span className="text-lg text-white">Documentation</span>
                               </NavigationMenuLink>
                           </Link>
                       </NavigationMenuItem>
@@ -102,7 +102,7 @@ export default function Header() {
               {/* Actions - Right */}
               <div className="flex-shrink-0 flex items-center space-x-4">
                   <Link href="https://github.com/bitfeedai" target="_blank" rel="noopener noreferrer" className="hidden md:block">
-                      <GithubIcon className="w-6 h-6 text-gray-600 hover:text-gray-900 fill-current" />
+                      <GithubIcon className="w-6 h-6 text-white hover:text-purple-300 fill-current" />
                   </Link>
                   <div className="hidden md:inline-flex">
                     <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} />

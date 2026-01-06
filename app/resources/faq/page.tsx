@@ -1,6 +1,7 @@
 import Header from "../../components/Header"
 import CallToAction from "../../components/CallToAction"
 import Footer from "../../components/Footer"
+import AnimatedStars from "../../components/AnimatedStars"
 import {
   Accordion,
   AccordionContent,
@@ -40,12 +41,15 @@ export default function Home() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#050206] via-[#060307] to-[#080309]" style={{
+      background: 'linear-gradient(135deg, rgba(30, 10, 35, 0.6) 0%, rgba(15, 5, 18, 0.4) 50%, transparent 100%), linear-gradient(225deg, rgba(25, 8, 30, 0.5) 0%, rgba(12, 4, 16, 0.3) 50%, transparent 100%), linear-gradient(45deg, rgba(20, 6, 25, 0.4) 0%, transparent 60%), linear-gradient(to bottom, #080309, #060307, #050206)'
+    }}>
+      <AnimatedStars />
       <Header />
       <main>
         <div className="py-32">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Frequently Asked Questions</h2>
-          <div className="flex justify-center text-center text-gray-700 mb-12 p-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
+          <div className="flex justify-center text-center text-gray-200 mb-12 p-4">
             <div className="w-2/3 md:w-1/2">
               Don't see your question? Feel free to reach out to us on Discord or via email. We're happy to help!
             </div>

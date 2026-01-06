@@ -27,13 +27,13 @@ export function MobileMenu() {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="pt-12 w-[300px] sm:w-[400px]">
+      <SheetContent side="right" className="pt-12 w-[300px] sm:w-[400px] bg-gradient-to-br from-[#050206] to-[#080309] border-purple-900/10">
         <nav className="flex flex-col gap-4">
           {navItems.map((item, index) => (
             <Link
               key={index}
               href={item.href}
-              className="text-lg font-medium text-gray-600 hover:text-gray-900"
+              className="text-lg font-medium text-white hover:text-purple-300"
               onClick={() => setOpen(false)}
             >
               {item.label}

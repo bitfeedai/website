@@ -83,16 +83,16 @@ export function WaitlistDialog({
       <div onClick={() => setOpen(true)}>
         {trigger}
       </div>
-      <DialogContent className="sm:max-w-[425px] pt-10">
+      <DialogContent className="sm:max-w-[425px] pt-10 bg-gradient-to-br from-[#050206] to-[#080309] border-purple-900/10 text-white">
         <DialogHeader>
-          <DialogTitle className="text-center">Get notified when we launch🛎️
+          <DialogTitle className="text-center text-white">Get notified when we launch🛎️
           </DialogTitle>
         </DialogHeader>
 
         {submitted ? (
           <div className="space-y-4 py-4 text-center">
-            <p className="text-gray-500">{message}</p>
-            <h3 className="text-lg font-medium text-gray-900">We'll be in touch soon!</h3>
+            <p className="text-gray-300">{message}</p>
+            <h3 className="text-lg font-medium text-white">We'll be in touch soon!</h3>
             <Button 
               onClick={() => {
                 setSubmitted(false)
@@ -109,13 +109,13 @@ export function WaitlistDialog({
           <form onSubmit={onSubmit} className="space-y-6">
             {/* Email Input */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-white">Email</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white"
+                className="bg-[#050206] text-white border-purple-900/10"
                 required
               />
             </div>
@@ -127,7 +127,7 @@ export function WaitlistDialog({
                 checked={apply} 
                 onCheckedChange={(checked) => setApply(checked === true)} 
               />
-              <Label htmlFor="apply" className="flex items-center">
+              <Label htmlFor="apply" className="flex items-center text-white">
                 <div className="flex flex-wrap justify-start">
                   I want early access to Bitfeed's &nbsp; <BuilderFeatureDialog />
                 </div>
@@ -139,7 +139,7 @@ export function WaitlistDialog({
               <div className="space-y-4">
                 {/* How did you find us? */}
                 <div className="space-y-2">
-                  <Label htmlFor="source">How did you find us?</Label>
+                  <Label htmlFor="source" className="text-white">How did you find us?</Label>
                   <Input
                     id="source"
                     name="source"
@@ -152,12 +152,12 @@ export function WaitlistDialog({
 
                 {/* Role Selection */}
                 <div className="space-y-2">
-                  <Label htmlFor="role">Your current role</Label>
+                  <Label htmlFor="role" className="text-white">Your current role</Label>
                   <Select value={role} onValueChange={setRole}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select your role" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white">
+                    <SelectContent className="bg-gradient-to-br from-[#050206] to-[#080309] border-purple-900/10 text-white">
                       <SelectItem value="business_owner">Business Owner</SelectItem>
                       <SelectItem value="freelancer">Freelancer</SelectItem>
                       <SelectItem value="employed">Employed</SelectItem>
@@ -168,7 +168,7 @@ export function WaitlistDialog({
 
                 {/* Social Media / Website */}
                 <div className="space-y-2">
-                  <Label htmlFor="social">Link to your social profile or website</Label>
+                  <Label htmlFor="social" className="text-white">Link to your social profile or website</Label>
                   <Input
                     id="social"
                     name="social"
