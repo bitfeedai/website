@@ -21,6 +21,24 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      }
+    }
+    
+    // Handle react-three/fiber and three.js properly
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    }
+    
+    // Mark three.js as external to avoid bundling issues
+    config.externals = config.externals || []
+    
+    return config
+  },
 }
 
 mergeConfig(nextConfig, userConfig)

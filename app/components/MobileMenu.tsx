@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "../components/ui/Button"
-import { Menu } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { useState } from "react"
-import WaitinglistBtn from "./WaitinglistBtn"
+import { WaitlistDialog } from "./WaitlistDialog"
 
 const navItems = [
   { href: "/resources/about", label: "About" },
@@ -22,24 +22,35 @@ export function MobileMenu() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="sm" className="md:hidden">
-          <Menu className="h-6 w-6" />
-          <span className="sr-only">Toggle menu</span>
-        </Button>
+        <button
+          className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
+          aria-label="Toggle menu"
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </SheetTrigger>
-      <SheetContent side="right" className="pt-12 w-[300px] sm:w-[400px] bg-gradient-to-br from-[#050206] to-[#080309] border-purple-900/10">
-        <nav className="flex flex-col gap-4">
+      <SheetContent side="right" className="pt-12 w-[300px] sm:w-[400px] bg-zinc-900/95 backdrop-blur-md border-zinc-800">
+        <nav className="flex flex-col gap-2">
           {navItems.map((item, index) => (
             <Link
               key={index}
               href={item.href}
-              className="text-lg font-medium text-white hover:text-purple-300"
+              className="px-4 py-3 text-sm text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors"
               onClick={() => setOpen(false)}
             >
               {item.label}
             </Link>
           ))}
-          <WaitinglistBtn buttonType={"default"} buttonText={"Get Started"} />
+          <hr className="border-zinc-800 my-2" />
+          <div className="px-4">
+            <WaitlistDialog
+              trigger={
+                <Button className="w-full shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">
+                  Get Started
+                </Button>
+              }
+            />
+          </div>
         </nav>
       </SheetContent>
     </Sheet>
