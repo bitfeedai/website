@@ -37,8 +37,8 @@ export default function Resources() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#050206] via-[#060307] to-[#080309] relative" style={{
-      background: 'linear-gradient(135deg, rgba(35, 12, 42, 0.65) 0%, rgba(20, 7, 25, 0.45) 40%, rgba(5, 2, 6, 1) 80%), linear-gradient(225deg, rgba(30, 10, 38, 0.55) 0%, rgba(15, 5, 20, 0.35) 50%, rgba(5, 2, 6, 1) 100%), linear-gradient(45deg, rgba(25, 8, 32, 0.45) 0%, transparent 70%), linear-gradient(to bottom right, #050206, #060307, #080309)'
+    <section className="py-20 bg-gradient-to-br from-[#0a0510] via-[#0d0613] to-[#100616] relative" style={{
+      background: 'linear-gradient(135deg, rgba(25, 8, 32, 0.7) 0%, rgba(15, 5, 20, 0.5) 40%, rgba(8, 3, 12, 1) 80%), linear-gradient(225deg, rgba(22, 7, 28, 0.6) 0%, rgba(12, 4, 16, 0.4) 50%, rgba(8, 3, 12, 1) 100%), linear-gradient(45deg, rgba(18, 6, 24, 0.5) 0%, transparent 70%), linear-gradient(to bottom right, #0a0510, #0d0613, #100616)'
     }}>
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2 

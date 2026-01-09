@@ -10,7 +10,7 @@ export default function Home() {
   return (
     // <SmoothScroll>
       <div className="flex flex-col min-h-screen grid-background" style={{
-        background: 'linear-gradient(135deg, rgba(30, 10, 35, 0.6) 0%, rgba(15, 5, 18, 0.4) 50%, transparent 100%), linear-gradient(225deg, rgba(25, 8, 30, 0.5) 0%, rgba(12, 4, 16, 0.3) 50%, transparent 100%), linear-gradient(45deg, rgba(20, 6, 25, 0.4) 0%, transparent 60%), linear-gradient(to bottom, rgb(8, 3, 9), rgb(5, 2, 6))'
+        background: 'linear-gradient(135deg, rgba(20, 5, 25, 0.7) 0%, rgba(12, 3, 15, 0.5) 50%, transparent 100%), linear-gradient(225deg, rgba(18, 4, 22, 0.6) 0%, rgba(10, 2, 13, 0.4) 50%, transparent 100%), linear-gradient(45deg, rgba(15, 4, 18, 0.5) 0%, transparent 60%), linear-gradient(to bottom, rgb(8, 2, 10), rgb(6, 2, 8))'
       }}>
         <Header />
         <main>

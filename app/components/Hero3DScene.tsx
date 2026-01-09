@@ -9,6 +9,36 @@ function AnimatedBox({ initialPosition }: { initialPosition: [number, number, nu
   const meshRef = useRef<THREE.Mesh>(null)
   const [targetPosition, setTargetPosition] = useState(new THREE.Vector3(...initialPosition))
   const currentPosition = useRef(new THREE.Vector3(...initialPosition))
+  
+  // Create gradient shader material once using useMemo
+  const gradientMaterial = useRef<THREE.ShaderMaterial>(
+    new THREE.ShaderMaterial({
+      uniforms: {
+        color1: { value: new THREE.Color(0xf97316) }, // orange-500
+        color2: { value: new THREE.Color(0x9333ea) }, // purple-600
+      },
+      vertexShader: `
+        varying vec3 vPosition;
+        void main() {
+          vPosition = position;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 color1;
+        uniform vec3 color2;
+        varying vec3 vPosition;
+        void main() {
+          // Create gradient based on position (mixing from top to bottom)
+          float mixFactor = (vPosition.y + 0.5) / 1.0;
+          mixFactor = clamp(mixFactor, 0.0, 1.0);
+          vec3 color = mix(color1, color2, mixFactor);
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `,
+      linewidth: 2,
+    })
+  ).current
 
   const getAdjacentIntersection = (current: THREE.Vector3) => {
     const directions = [
@@ -49,7 +79,7 @@ function AnimatedBox({ initialPosition }: { initialPosition: [number, number, nu
       <meshStandardMaterial color="#ffffff" opacity={0.9} transparent />
       <lineSegments>
         <edgesGeometry attach="geometry" args={[new THREE.BoxGeometry(1, 1, 1)]} />
-        <lineBasicMaterial attach="material" color="#000000" linewidth={2} />
+        <primitive object={gradientMaterial} attach="material" />
       </lineSegments>
     </mesh>
   )

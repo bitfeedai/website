@@ -5,7 +5,9 @@ import Image from "next/image"
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-12">
+    <footer className="bg-[#0a0510] text-white py-12" style={{
+      background: 'linear-gradient(to top, #0a0510, #0d0613)'
+    }}>
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-5 gap-8 justify-center md:justify-start">
           <div>
