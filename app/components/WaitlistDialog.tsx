@@ -1,7 +1,7 @@
 // components/WaitlistDialog.tsx
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "../../components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogTrigger,
 } from "../../components/ui/dialog"
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
@@ -21,10 +22,12 @@ interface WaitlistDialogProps {
   trigger: React.ReactNode;
   title?: string;
   description?: string;
+  formType?: "notified" | "earlyAccess";
 }
 
 export function WaitlistDialog({ 
-  trigger, 
+  trigger,
+  formType = "notified",
 }: WaitlistDialogProps) {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -32,9 +35,22 @@ export function WaitlistDialog({
   const [source, setSource] = useState("")
   const [message, setMessage] = useState("")
   const [isError, setIsError] = useState(false)
-  const [apply, setApply] = useState(false);
+  const [apply, setApply] = useState(formType === "earlyAccess");
   const [role, setRole] = useState("");
   const [socialUrl, setSocialUrl] = useState("");
+
+  // Reset form when dialog opens or formType changes
+  useEffect(() => {
+    if (open) {
+      setApply(formType === "earlyAccess");
+      setSource("");
+      setRole("");
+      setSocialUrl("");
+      setMessage("");
+      setIsError(false);
+      setSubmitted(false);
+    }
+  }, [open, formType]);
   
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -45,6 +61,17 @@ export function WaitlistDialog({
     const formData = new FormData(event.currentTarget)
     const email = formData.get("email") as string
 
+    // Validate X profile URL if early access form
+    if (formType === "earlyAccess" && socialUrl) {
+      const xUrlPattern = /^(https?:\/\/)?(www\.)?x\.com\/[a-zA-Z0-9_]+$/i;
+      if (!xUrlPattern.test(socialUrl)) {
+        setIsError(true);
+        setMessage("Please enter a valid X profile URL (e.g., x.com/yourhandle, https://x.com/yourhandle, www.x.com/yourhandle)");
+        setLoading(false);
+        return;
+      }
+    }
+
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
@@ -53,6 +80,7 @@ export function WaitlistDialog({
         },
         body: JSON.stringify({ 
           email, 
+          formType,
           apply,
           source: apply ? source : "", 
           role: apply ? role : "", 
@@ -80,12 +108,13 @@ export function WaitlistDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <div onClick={() => setOpen(true)}>
+      <DialogTrigger asChild>
         {trigger}
-      </div>
+      </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] pt-10 bg-gradient-to-br from-[#050206] to-[#080309] border-purple-900/10 text-white">
         <DialogHeader>
-          <DialogTitle className="text-center text-white">Get notified when we launch🛎️
+          <DialogTitle className="text-center text-white">
+            {formType === "earlyAccess" ? "Get Early Access 🚀" : "Get notified when we launch🛎️"}
           </DialogTitle>
         </DialogHeader>
 
@@ -99,6 +128,9 @@ export function WaitlistDialog({
                 setOpen(false)
                 setSource("")
                 setMessage("")
+                setRole("")
+                setSocialUrl("")
+                setApply(formType === "earlyAccess")
               }}
               variant="outline"
             >
@@ -120,8 +152,9 @@ export function WaitlistDialog({
               />
             </div>
 
-            {/* Checkbox for notification preference */}
-            <div className="flex items-center space-x-2">
+            {/* For early access form, show questions by default */}
+            {/* Checkbox for notification preference - commented out for now */}
+            {/* <div className="flex items-center space-x-2">
               <Checkbox 
                 id="apply" 
                 checked={apply} 
@@ -132,10 +165,10 @@ export function WaitlistDialog({
                   I want early access to Bitfeed's &nbsp; <BuilderFeatureDialog />
                 </div>
               </Label>
-            </div>
+            </div> */}
 
-            {/* Additional Fields if Checkbox is Checked */}
-            {apply && (
+            {/* Additional Fields - shown by default for early access, hidden for notified */}
+            {formType === "earlyAccess" && (
               <div className="space-y-4">
                 {/* How did you find us? */}
                 <div className="space-y-2">
@@ -144,7 +177,7 @@ export function WaitlistDialog({
                     id="source"
                     name="source"
                     type="text"
-                    placeholder="Twitter, friend, etc."
+                    placeholder="X, Google, friend, etc."
                     value={source}
                     onChange={(e) => setSource(e.target.value)}
                   />
@@ -161,22 +194,27 @@ export function WaitlistDialog({
                       <SelectItem value="business_owner">Business Owner</SelectItem>
                       <SelectItem value="freelancer">Freelancer</SelectItem>
                       <SelectItem value="employed">Employed</SelectItem>
+                      <SelectItem value="investor">Investor</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
-                {/* Social Media / Website */}
+                {/* Social Media / Website - X only */}
                 <div className="space-y-2">
-                  <Label htmlFor="social" className="text-white">Link to your social profile or website</Label>
+                  <Label htmlFor="social" className="text-white">Link to your X profile</Label>
                   <Input
                     id="social"
                     name="social"
-                    type="url"
-                    placeholder="https://yourwebsite.com"
+                    type="text"
+                    placeholder="x.com/yourhandle"
                     value={socialUrl}
                     onChange={(e) => setSocialUrl(e.target.value)}
+                    pattern="^(https?://)?(www\.)?x\.com/[a-zA-Z0-9_]+$"
                   />
+                  {socialUrl && !/^(https?:\/\/)?(www\.)?x\.com\/[a-zA-Z0-9_]+$/i.test(socialUrl) && (
+                    <p className="text-sm text-red-400">Please enter a valid X profile URL (e.g., x.com/yourhandle, https://x.com/yourhandle, www.x.com/yourhandle)</p>
+                  )}
                 </div>
               </div>
             )}
@@ -193,7 +231,13 @@ export function WaitlistDialog({
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false)
+                  setSource("")
+                  setRole("")
+                  setSocialUrl("")
+                  setApply(formType === "earlyAccess")
+                }}
               >
                 Cancel
               </Button>

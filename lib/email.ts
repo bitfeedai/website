@@ -101,6 +101,7 @@ export interface EmailService {
 
 export interface WaitlistFormData {
   email: string;
+  formType: "notified" | "earlyAccess";
   apply: boolean;
   source?: string;
   role?: string;

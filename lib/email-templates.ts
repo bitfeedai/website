@@ -6,6 +6,7 @@
 
 export interface WaitlistFormData {
   email: string;
+  formType: "notified" | "earlyAccess";
   apply: boolean;
   source?: string;
   role?: string;
@@ -31,9 +32,8 @@ Additional Information:
 `;
   }
 
-  const subject = data.apply
-    ? `New Waitlist Signup - Early Access Request from ${data.email}`
-    : `New Waitlist Signup from ${data.email}`;
+  const formTypeLabel = data.formType === "earlyAccess" ? "Early Access" : "Get Notified";
+  const subject = `New ${formTypeLabel} Form Submission from ${data.email}`;
 
   // Plain text version
   const text = `
@@ -42,11 +42,12 @@ ${siteUrl}
 ** Welcome to Bitfeed
 ------------------------------------------------------------
 
-** New Waitlist Signup
+** New ${formTypeLabel} Form Submission
 ------------------------------------------------------------
 
+Form Type: ${formTypeLabel}
 Email: ${data.email}
-Early Access Request: ${data.apply ? "Yes" : "No"}
+${data.formType === "earlyAccess" ? `Early Access Request: ${data.apply ? "Yes" : "No"}` : ""}
 ${additionalInfo}
 
 ---
@@ -82,12 +83,13 @@ Copyright (C) ${currentYear} Bitfeed. All rights reserved.
     </h2>
     
     <h3 style="color: #374151; margin-top: 20px;">
-      ** New Waitlist Signup
+      ** New ${formTypeLabel} Form Submission
     </h3>
 
     <div style="background-color: white; padding: 15px; border-radius: 4px; margin-top: 15px;">
+      <p style="margin: 10px 0;"><strong>Form Type:</strong> ${formTypeLabel}</p>
       <p style="margin: 10px 0;"><strong>Email:</strong> ${data.email}</p>
-      <p style="margin: 10px 0;"><strong>Early Access Request:</strong> ${data.apply ? "Yes" : "No"}</p>
+      ${data.formType === "earlyAccess" ? `<p style="margin: 10px 0;"><strong>Early Access Request:</strong> ${data.apply ? "Yes" : "No"}</p>` : ""}
       ${data.apply ? `
       <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
         <h4 style="color: #4b5563; margin-top: 0;">Additional Information:</h4>

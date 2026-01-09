@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     const email = body.email;
+    const formType = body.formType || "notified"; // "notified" or "earlyAccess"
     const source = body.source || "";
     const role = body.role || "";
     const socialUrl = body.socialUrl || "";
@@ -51,6 +52,7 @@ export async function POST(req: NextRequest) {
     // The user's email is only used as replyTo in the notification email
     await emailService.sendWaitlistNotification({
       email,
+      formType,
       apply,
       source: apply ? source : undefined,
       role: apply ? role : undefined,

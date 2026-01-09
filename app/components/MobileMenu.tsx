@@ -45,7 +45,7 @@ export function MobileMenu() {
           <div className="px-4">
             <WaitlistDialog
               trigger={
-                <Button className="w-full shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">
+                <Button className="w-full shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-md">
                   Get Started
                 </Button>
               }

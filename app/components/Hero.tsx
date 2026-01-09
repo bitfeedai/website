@@ -128,21 +128,28 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <WaitlistDialog
+            formType="notified"
             trigger={
               <Button
-                className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-white/10"
+                variant="outline"
+                className="rounded-md px-8 h-12 text-base font-medium border-2 border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
               >
                 Get Notified
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             }
           />
-          <Button
-            className="rounded-full px-8 h-12 text-base font-medium border-2 border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
-            onClick={() => {}}
-          >
-            Get Early Access
-          </Button>
+          <WaitlistDialog
+            formType="earlyAccess"
+            trigger={
+              <Button
+                className="rounded-md px-8 h-12 text-base font-medium bg-transparent hover:bg-[rgb(5,2,6)] text-zinc-300 hover:text-white font-normal"
+              >
+                Get Early Access
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            }
+          />
         </motion.div>
       </div>
     </section>

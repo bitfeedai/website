@@ -1,7 +1,6 @@
 import Header from "../../components/Header"
 import CallToAction from "../../components/CallToAction"
 import Footer from "../../components/Footer"
-import AnimatedStars from "../../components/AnimatedStars"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
@@ -12,7 +11,6 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#050206] via-[#060307] to-[#080309]" style={{
       background: 'linear-gradient(135deg, rgba(30, 10, 35, 0.6) 0%, rgba(15, 5, 18, 0.4) 50%, transparent 100%), linear-gradient(225deg, rgba(25, 8, 30, 0.5) 0%, rgba(12, 4, 16, 0.3) 50%, transparent 100%), linear-gradient(45deg, rgba(20, 6, 25, 0.4) 0%, transparent 60%), linear-gradient(to bottom, #080309, #060307, #050206)'
     }}>
-      <AnimatedStars />
       <Header />
       <main>
         <div className="py-32">

@@ -183,7 +183,7 @@ export default function Header() {
           </Link>
           <WaitlistDialog
             trigger={
-              <Button size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
+              <Button size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-md px-4">
                 Get Started
               </Button>
             }
@@ -229,7 +229,7 @@ export default function Header() {
               </Link>
               <WaitlistDialog
                 trigger={
-                  <Button className="w-full shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">
+                  <Button className="w-full shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-md">
                     Get Started
                   </Button>
                 }

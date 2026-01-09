@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: auto;
+}
+
 :root {
   --orange: 13, 83%, 43%;
   --purple: 320, 77%, 37%;
