@@ -97,7 +97,7 @@ export default function Hero() {
               <span className="text-gradient-mixed">Smarter Feeds</span>
             </motion.span>
           </span>
-          <span className="block overflow-hidden">
+          <span className="block overflow-hidden pb-2">
             <motion.span
               className="block text-zinc-500"
               variants={textRevealVariants}
