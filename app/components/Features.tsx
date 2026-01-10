@@ -1,42 +1,47 @@
 "use client"
 
 import React from "react"
-import { Wand2, ToyBrick, Share2, Code, Brain, Zap,  } from "lucide-react"
+import { ZapIcon, type ZapHandle } from "@/components/ui/zap"
+import { UsersIcon, type UsersIconHandle } from "@/components/ui/users"
+import { LayoutPanelTopIcon, type LayoutPanelTopIconHandle } from "@/components/ui/layout-panel-top"
+import { ConnectIcon, type ConnectIconHandle } from "@/components/ui/connect"
+import { WaypointsIcon, type WaypointsIconHandle } from "@/components/ui/waypoints"
+import { SparklesIcon, type SparklesIconHandle } from "@/components/ui/sparkles"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const features = [
   {
-    icon: Wand2,
-    title: "Bits",
-    description: "Create powerful widgets using AI, no coding required.",
+    icon: SparklesIcon,
+    title: "AI Wizard",
+    description: "Create powerful widgets using natural language—from simple frontend components to full containerized apps. No coding required. Describe what you need, and Bitfeed builds it instantly.",
     url: "/resources/examples"
   },
   {
-    icon: ToyBrick,
-    title: "Feeds",
-    description: "Build dashboards by combining bits. Track, generate and publish content.",
+    icon: ConnectIcon,
+    title: "Universal Connectivity",
+    description: "Connect to ANY data source: RSS feeds, REST APIs, GraphQL, databases, social media, cloud services, trading platforms, and more.",
     url: "/resources/examples"
   },
   {
-    icon: Share2,
-    title: "Easy Sharing",
-    description: "Share your bits and feeds publicly or privately with ease.",
+    icon: UsersIcon,
+    title: "Marketplace",
+    description: "Discover, share, and monetize widgets created by the community. Build once, use everywhere—or build passive income from your creations.",
   },
   {
-    icon: Code,
-    title: "API integrations",
-    description: "Seamlessly integrate and connect any API. Coming soon.",
+    icon: WaypointsIcon,
+    title: "Boards & Widget Composition",
+    description: "Connect widgets into boards to create powerful data pipelines and automated workflows. The board's projection emerges naturally from its widget composition.",
   },
   {
-    icon: Brain,
-    title: "AI-Agent Integrations",
-    description: "Seamlessly integrate AI Agents. Coming soon.",
+    icon: LayoutPanelTopIcon,
+    title: "Emergent Projections",
+    description: "Boards naturally function as dashboards, automations, APIs, interactive experiences, or feeds based on their widget composition—no configuration needed.",
   },
   {
-    icon: Zap,
-    title: "Automations",
-    description: "Connect Bits to create workflows for instant productivity. Coming soon.",
+    icon: ZapIcon,
+    title: "Automation Engine",
+    description: "Schedule updates, trigger actions, and automate workflows. Real-time notifications, data persistence, and intelligent processing.",
   },
 ]
 
@@ -73,6 +78,91 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
   </div>
 )
 
+const FeatureCard = ({ feature, variants }: { feature: typeof features[0], variants: typeof itemVariants }) => {
+  const zapRef = useRef<ZapHandle>(null)
+  const usersRef = useRef<UsersIconHandle>(null)
+  const layoutPanelTopRef = useRef<LayoutPanelTopIconHandle>(null)
+  const connectRef = useRef<ConnectIconHandle>(null)
+  const waypointsRef = useRef<WaypointsIconHandle>(null)
+  const sparklesRef = useRef<SparklesIconHandle>(null)
+  
+  const isZapIcon = feature.icon === ZapIcon
+  const isUsersIcon = feature.icon === UsersIcon
+  const isLayoutPanelTopIcon = feature.icon === LayoutPanelTopIcon
+  const isConnectIcon = feature.icon === ConnectIcon
+  const isWaypointsIcon = feature.icon === WaypointsIcon
+  const isSparklesIcon = feature.icon === SparklesIcon
+  
+  return (
+    <motion.div 
+      variants={variants}
+      className="h-full"
+    >
+      <div 
+        className="group relative text-center p-6 rounded-lg border border-zinc-800/50 bg-zinc-900/30 hover:border-orange-500/30 transition-all duration-300 h-full flex flex-col"
+        onMouseEnter={() => {
+          if (isZapIcon && zapRef.current) {
+            zapRef.current.startAnimation()
+          } else if (isUsersIcon && usersRef.current) {
+            usersRef.current.startAnimation()
+          } else if (isLayoutPanelTopIcon && layoutPanelTopRef.current) {
+            layoutPanelTopRef.current.startAnimation()
+          } else if (isConnectIcon && connectRef.current) {
+            connectRef.current.startAnimation()
+          } else if (isWaypointsIcon && waypointsRef.current) {
+            waypointsRef.current.startAnimation()
+          } else if (isSparklesIcon && sparklesRef.current) {
+            sparklesRef.current.startAnimation()
+          }
+        }}
+        onMouseLeave={() => {
+          if (isZapIcon && zapRef.current) {
+            zapRef.current.stopAnimation()
+          } else if (isUsersIcon && usersRef.current) {
+            usersRef.current.stopAnimation()
+          } else if (isLayoutPanelTopIcon && layoutPanelTopRef.current) {
+            layoutPanelTopRef.current.stopAnimation()
+          } else if (isConnectIcon && connectRef.current) {
+            connectRef.current.stopAnimation()
+          } else if (isWaypointsIcon && waypointsRef.current) {
+            waypointsRef.current.stopAnimation()
+          } else if (isSparklesIcon && sparklesRef.current) {
+            sparklesRef.current.stopAnimation()
+          }
+        }}
+      >
+        <CardDecorator>
+          {isZapIcon ? (
+            <ZapIcon ref={zapRef} size={24} className="icon-gradient [&>svg]:stroke-current" />
+          ) : isUsersIcon ? (
+            <UsersIcon ref={usersRef} size={24} className="icon-gradient [&>svg]:stroke-current" />
+          ) : isLayoutPanelTopIcon ? (
+            <LayoutPanelTopIcon ref={layoutPanelTopRef} size={24} className="icon-gradient [&>svg]:stroke-current" />
+          ) : isConnectIcon ? (
+            <ConnectIcon ref={connectRef} size={24} className="icon-gradient [&>svg]:stroke-current" />
+          ) : isWaypointsIcon ? (
+            <WaypointsIcon ref={waypointsRef} size={24} className="icon-gradient [&>svg]:stroke-current" />
+          ) : isSparklesIcon ? (
+            <SparklesIcon ref={sparklesRef} size={24} className="icon-gradient [&>svg]:stroke-current" />
+          ) : (
+            <feature.icon className="w-6 h-6 icon-gradient" />
+          )}
+        </CardDecorator>
+        <h3 className="mt-6 text-xl font-semibold mb-2 text-white">{feature.title}</h3>
+        <p className="text-sm text-gray-300 flex-grow">{feature.description}
+        {
+          feature?.url && (
+            <span className="text-blue-600">
+              <a href={feature.url}> See examples</a>
+            </span>
+          )
+        }
+        </p>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function Features() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -86,7 +176,7 @@ export default function Features() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-center mb-12 text-white"
+          className="font-display text-3xl font-bold text-center mb-12 text-white"
         >
           Building Blocks
         </motion.h2>
@@ -98,26 +188,7 @@ export default function Features() {
           className="grid md:grid-cols-3 gap-8"
         >
           {features.map((feature, index) => (
-            <motion.div 
-              key={index} 
-              variants={itemVariants}
-            >
-              <div className="group relative text-center p-6 rounded-lg border border-zinc-800/50 bg-zinc-900/30 hover:border-orange-500/30 transition-all duration-300">
-                <CardDecorator>
-                  <feature.icon className="w-6 h-6 icon-gradient" />
-                </CardDecorator>
-                <h3 className="mt-6 text-xl font-semibold mb-2 text-white">{feature.title}</h3>
-                <p className="text-sm text-gray-300">{feature.description}
-                {
-                  feature?.url && (
-                    <span className="text-blue-600">
-                      <a href={feature.url}> See examples</a>
-                    </span>
-                  )
-                }
-                </p>
-              </div>
-            </motion.div>
+            <FeatureCard key={index} feature={feature} variants={itemVariants} />
           ))}
         </motion.div>
       </div>

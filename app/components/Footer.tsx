@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-5 gap-8 justify-center md:justify-start">
           <div>
             <h3 className="text-lg font-semibold mb-4">Bitfeed</h3>
-            <p className="text-gray-400">Smarter Feeds Daily</p>
+            <p className="text-gray-400">Everything AI. One Platform.</p>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Company</h4>
@@ -45,6 +45,11 @@ export default function Footer() {
               <li>
                 <Link href="/docs" className="text-gray-400 hover:text-white">
                   Documentation
+                </Link>
+              </li>
+              <li>
+                <Link href="/marketplace" className="text-gray-400 hover:text-white">
+                  Marketplace
                 </Link>
               </li>
               <li>

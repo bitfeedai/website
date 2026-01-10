@@ -1,35 +1,30 @@
 # Bitfeed Website
 
-The public landing page for Bitfeed - an AI-powered platform for creating personalized feeds.
+The public landing page for Bitfeed - a graph of widgets where boards naturally function as dashboards, automations, APIs, interactive experiences, or feeds.
 
 ## About Bitfeed
 
-Bitfeed is a platform for creating personalized feeds powered by AI, built from small, flexible widgets called **Bits**. These Bits can be combined to craft entire custom dashboards and informative feeds, giving you full control over how you organize and display information.
+Bitfeed is a graph of widgets. Build widgets, connect them into boards, and the board's projection emerges naturally from its composition. Widgets come in different forms: frontend-only components, widgets with predefined backend function nodes, or full containerized micro-applications. Boards are structural containers where widgets are placed and connected—the board's projection type (dashboard, automation, API, interactive experience, or feed) emerges from its widget composition.
 
 ### Key Features
 
 Bitfeed enables you to create:
-- RSS Feeds
-- Dynamic Maps
-- Custom Forms
-- Digital Flyers
-- Targeted Ads
-- External Tools
-- Social Media Accounts
-- Track Information
-- Filter Content
-- Interactive Charts
-- 3D Animations
+- Widgets (from simple frontend components to containerized applications)
+- Boards (structural containers where widgets are connected)
+- Emergent projections (dashboards, automations, APIs, interactive experiences, feeds)
+- Universal data connectivity
+- AI-powered no-code widget creation
+- Marketplace ecosystem
 
 ### How It Works
 
 Bitfeed consists of two major parts:
-- **Bits**: Small, versatile widgets created using Bitfeed's wizard (which uses external AI services)
-- **Feeds**: Boards on which Bits can be placed to create custom dashboards
+- **Widgets**: The atomic unit—frontend-only components, widgets with predefined backend function nodes, or containerized micro-applications created using Bitfeed's AI Wizard
+- **Boards**: Structural containers where widgets are placed and connected. The board's projection type emerges naturally from its widget composition
 
 ### Open Source & Community
 
-Bitfeed is committed to open-source software development and believes in the democratization of information. The platform thrives on community collaboration, where creators, developers, and AI enthusiasts come together to build and share their Bits and Feeds.
+Bitfeed is committed to open-source software development and believes in the democratization of information. The platform thrives on community collaboration, where creators, developers, and AI enthusiasts come together to build and share their widgets and boards.
 
 ## Building and Running
 

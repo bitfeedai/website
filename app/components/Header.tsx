@@ -31,26 +31,27 @@ const components: { title: string; href: string; description: string }[] = [
       "See what's new in Bitfeed.",
   },
   {
-    title: "Examples",
-    href: "/resources/examples",
+    title: "Documentation",
+    href: "/docs",
     description:
-      "Checkout examples of Bits and Feeds created by the community.",
+      "Learn how to use Bitfeed and build widgets.",
   }
 ]
 
 const navItems = [
   { label: "Building Blocks", href: "/#features", isLink: true },
   { label: "Resources", href: "#", isLink: false },
-  { label: "Documentation", href: "/docs", isLink: true },
+  { label: "Examples", href: "/resources/examples", isLink: true },
+  { label: "Marketplace", href: "/marketplace", isLink: true },
 ]
 
 const mobileNavItems = [
   { href: "/resources/about", label: "About" },
-  { href: "/#features", label: "Building Blocks" },
-  { href: "/docs", label: "Documentation" },
-  { href: "/resources/changelog", label: "Changelog" },
   { href: "/resources/examples", label: "Examples" },
-  { href: "https://github.com/bitfeedai", label: "Github" },
+  { href: "/marketplace", label: "Marketplace" },
+  { href: "/resources/faq", label: "FAQ" },
+  { href: "/resources/changelog", label: "Changelog" },
+  { href: "/docs", label: "Documentation" },
 ]
 
 export default function Header() {
@@ -81,7 +82,7 @@ export default function Header() {
       initial={{ y: -100, opacity: 0, x: '-50%' }}
       animate={{ y: 0, opacity: 1, x: '-50%' }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl"
+      className="fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-[57.6rem]"
     >
       <nav
         ref={navRef}
@@ -92,7 +93,7 @@ export default function Header() {
           <div className="w-8 h-8 rounded-lg flex items-center justify-center">
             <Image src="/logo.svg?height=48&width=48" alt="Bitfeed Logo" width={48} height={48} />
           </div>
-          <span className="font-semibold text-white hidden sm:block">Bitfeed</span>
+          <span className="font-display font-semibold text-white hidden text-2xl sm:block">Bitfeed</span>
         </Link>
 
         {/* Desktop Nav Items */}
@@ -132,8 +133,23 @@ export default function Header() {
                     setResourcesOpen(false)
                   }}
                 >
-                  <button
-                    className="relative px-4 py-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                  <Link
+                    href="/#resources"
+                    className="relative px-4 py-2 text-sm text-zinc-400 hover:text-white transition-colors block"
+                    onClick={(e) => {
+                      // Close the dropdown
+                      setResourcesOpen(false)
+                      setHoveredIndex(null)
+                      
+                      // If we're already on the homepage, scroll smoothly
+                      if (typeof window !== 'undefined' && window.location.pathname === '/') {
+                        e.preventDefault()
+                        const element = document.getElementById('resources')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }
+                      }
+                    }}
                   >
                     {hoveredIndex === index && (
                       <motion.div
@@ -144,7 +160,7 @@ export default function Header() {
                       />
                     )}
                     <span className="relative z-10">{item.label}</span>
-                  </button>
+                  </Link>
                   <AnimatePresence>
                     {resourcesOpen && (
                       <motion.div
@@ -207,26 +223,19 @@ export default function Header() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 mt-2 p-4 rounded-md bg-zinc-900/95 backdrop-blur-md border border-zinc-800"
+            className="absolute top-full left-0 right-0 mt-2 p-4 rounded-md bg-zinc-900/40 backdrop-blur-md border border-zinc-800"
           >
             <div className="flex flex-col gap-2">
               {mobileNavItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-3 text-sm text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors"
+                  className="px-4 py-3 text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 active:bg-zinc-800/80 rounded-lg transition-all duration-200"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <hr className="border-zinc-800 my-2" />
-              <Link href="https://github.com/bitfeedai" target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" className="w-full justify-start text-zinc-400 hover:text-white">
-                  <GithubIcon className="w-4 h-4 mr-2" />
-                  Github
-                </Button>
-              </Link>
               <WaitlistDialog
                 trigger={
                   <Button className="w-full shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-md">

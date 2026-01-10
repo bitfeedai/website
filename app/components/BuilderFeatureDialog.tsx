@@ -33,14 +33,14 @@ export function BuilderFeatureDialog() {
             The Bitfeed wizard will soon launch in closed alpha.
           </p>
           <p>
-            With Bitfeed's wizard, you can create flexible and dynamic widgets called <strong>Bits</strong>. 
-            These Bits can than be added and combined to create custom dashboards and informative feeds tailored to your unique needs, 
+            With Bitfeed's wizard, you can create flexible and dynamic widgets—from simple frontend components to full containerized applications. 
+            These widgets can then be added to boards and combined to create custom dashboards, automations, APIs, interactive experiences, or feeds tailored to your unique needs, 
             putting the full power of AI literally at your fingertips.
             Whether for private use or shared with the community, hosted locally or using Bitfeed cloud, everything is possible. 
           </p>
             <p><strong>By applying for early access to Bitfeed's wizard, you will be the first to:</strong></p>
           <ul className="list-none list-inside space-y-1">
-            <li>✅ Create AI-powered Bits (paid for by us)</li>
+            <li>✅ Create AI-powered widgets (paid for by us)</li>
             <li>✅ Have your work featured upon launch</li>
             <li>✅ Have early access to Discord</li>
           </ul>

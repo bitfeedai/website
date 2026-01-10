@@ -1,14 +1,12 @@
 "use client"
 
 import Header from "../components/Header"
-import CallToAction from "../components/CallToAction"
 import Footer from "../components/Footer"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { BookOpen } from "lucide-react"
-import Link from "next/link"
+import { Store } from "lucide-react"
 
-export default function Home() {
+export default function Marketplace() {
   const heroRef = useRef(null)
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
@@ -35,11 +33,11 @@ export default function Home() {
                 className="inline-flex items-center justify-center mb-6"
               >
                 <div className="p-3 rounded-lg bg-gradient-to-br from-orange-500/20 to-purple-600/20 border border-orange-500/30">
-                  <BookOpen className="w-8 h-8 text-orange-400" />
+                  <Store className="w-8 h-8 text-orange-400" />
                 </div>
               </motion.div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
-                <span className="text-gradient-mixed">Documentation</span>
+                <span className="text-gradient-mixed">Marketplace</span>
               </h1>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -47,21 +45,16 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-zinc-900/50 border border-zinc-800/50"
               >
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Docs are currently under construction.
-                  Please come back later and/or follow us on &nbsp;
-                  <Link href="https://x.com/bitfeedai" className="icon-gradient">
-                    <span className="font-bold">x.com</span> &nbsp;
-                  </Link>
-                  for live updates 📢
+                <p className="text-lg text-gray-300">
+                  Coming soon...
                 </p>
               </motion.div>
             </motion.div>
           </div>
         </section>
-        <CallToAction />
       </main>
       <Footer />
     </div>
   )
 }
+

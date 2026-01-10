@@ -21,11 +21,11 @@ export default function CallToAction() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="container mx-auto px-4 text-center"
       >
-        <h2 className="text-3xl font-bold mb-4 text-white">
-          Ready to Enhance Your Web Experience?
+        <h2 className="font-display text-3xl font-bold mb-4 text-white">
+          Ready to End Tool Fragmentation?
         </h2>
         <p className="text-xl mb-8 text-white">
-          Join the Bitfeed community and start creating powerful Feeds today.
+          Stop switching between dozens of apps. Join the Bitfeed community and consolidate all your AI capabilities into one powerful platform. Create, automate, and share-everything AI in one place.
         </p>
         <div className="flex gap-8 justify-center">
           <WaitinglistBtn buttonType={"outline"} buttonText={"Get Started"} />

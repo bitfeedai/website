@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <main>
         <div className="py-32">
-        <h2 className="text-3xl font-bold text-center mb-12 text-white">Privacy Policy</h2>
+        <h2 className="font-display text-3xl font-bold text-center mb-12 text-white">Privacy Policy</h2>
         <div className="flex justify-center text-center text-gray-200 mb-12 p-4">
             <div className="w-2/3 md:w-1/2">
               <div className="max-w-3xl mx-auto space-y-8 p-4 sm:p-6 bg-gradient-to-br from-[#060307] to-[#080309] rounded-sm border border-purple-900/10">

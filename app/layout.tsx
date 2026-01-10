@@ -1,11 +1,13 @@
 import type React from "react"
-import { Inter } from "next/font/google"
+import { Manrope } from "next/font/google"
 import type { Metadata } from "next"
 import { ScrollToTop } from "./components/ScrollToTop"
-import Head from "next/head"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+})
 
 export const metadata: Metadata = {
   title: "Bitfeed - Smarter Feeds Daily",
@@ -19,8 +21,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <Head>
+    <html lang="en" className={`dark ${manrope.variable}`}>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -30,8 +36,8 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
-      </Head>
-      <body className={inter.className}>{children}</body>
+      </head>
+      <body className="font-sans antialiased">{children}</body>
       <ScrollToTop />
     </html>
   )

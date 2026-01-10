@@ -169,4 +169,20 @@ body {
 
     --radius: 0.5rem;
   }
+
+  html {
+    font-family: var(--font-manrope), system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-manrope), system-ui, sans-serif;
+  }
+}
+
+.font-display {
+  font-family: "Cal Sans", var(--font-manrope), system-ui, sans-serif;
+}
+
+.font-heading {
+  font-family: "Instrument Sans", var(--font-manrope), system-ui, sans-serif;
 }

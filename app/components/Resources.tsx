@@ -3,12 +3,13 @@
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { ArrowRight, FileText, HelpCircle, GitBranch } from "lucide-react"
+import { ArrowRight, FileText, HelpCircle, GitBranch, BookOpen } from "lucide-react"
 
 const resources = [
   { title: "About", href: "/resources/about", icon: FileText, description: "Discover our mission, vision, and the team behind Bitfeed." },
   { title: "FAQ", href: "/resources/faq", icon: HelpCircle, description: "Find answers to common questions about features and usage." },
   { title: "Changelog", href: "/resources/changelog", icon: GitBranch, description: "Track updates, new features, and improvements." },
+  { title: "Documentation", href: "/docs", icon: BookOpen, description: "Learn how to use Bitfeed and build widgets." },
 ]
 
 const containerVariants = {
@@ -37,7 +38,7 @@ export default function Resources() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#0a0510] via-[#0d0613] to-[#100616] relative" style={{
+    <section id="resources" className="py-20 bg-gradient-to-br from-[#0a0510] via-[#0d0613] to-[#100616] relative" style={{
       background: 'linear-gradient(135deg, rgba(25, 8, 32, 0.7) 0%, rgba(15, 5, 20, 0.5) 40%, rgba(8, 3, 12, 1) 80%), linear-gradient(225deg, rgba(22, 7, 28, 0.6) 0%, rgba(12, 4, 16, 0.4) 50%, rgba(8, 3, 12, 1) 100%), linear-gradient(45deg, rgba(18, 6, 24, 0.5) 0%, transparent 70%), linear-gradient(to bottom right, #0a0510, #0d0613, #100616)'
     }}>
       <div className="container mx-auto px-4 relative z-10">
@@ -45,7 +46,7 @@ export default function Resources() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-center mb-12 text-white"
+          className="font-display text-3xl font-bold text-center mb-12 text-white"
         >
           Resources
         </motion.h2>
@@ -54,7 +55,7 @@ export default function Resources() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {resources.map((resource, index) => {
             const Icon = resource.icon
@@ -62,22 +63,23 @@ export default function Resources() {
               <motion.div
                 key={index}
                 variants={itemVariants}
+                className="h-full"
               >
                 <Link
                   href={resource.href}
-                  className="group relative block p-8 rounded-xl bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 border border-zinc-800/50 hover:border-orange-500/30 transition-all duration-300 overflow-hidden"
+                  className="group relative block p-8 rounded-lg bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 border border-zinc-800/50 hover:border-orange-500/30 transition-all duration-300 overflow-hidden h-full flex flex-col"
                 >
                   {/* Gradient overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Glow effect on hover */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-orange-500/10 via-purple-600/10 to-orange-500/10 blur-xl" />
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-orange-500/10 via-purple-600/10 to-orange-500/10 blur-xl" />
                   
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="mb-4 inline-flex p-3 rounded-lg bg-gradient-to-br from-orange-500/20 to-purple-600/20 border border-orange-500/20 group-hover:border-orange-500/40 group-hover:scale-110 transition-all duration-300">
-                      <Icon className="w-6 h-6 text-orange-400 group-hover:text-orange-300 transition-colors" />
+                    <div className="mb-4 inline-flex p-2 rounded-md bg-gradient-to-br from-orange-500/20 to-purple-600/20 border border-orange-500/20 group-hover:border-orange-500/40 transition-all duration-300">
+                      <Icon className="w-5 h-5 text-orange-400 group-hover:text-orange-300 transition-colors" />
                     </div>
                     
                     {/* Title and Arrow */}
@@ -89,7 +91,7 @@ export default function Resources() {
                     </div>
                     
                     {/* Description */}
-                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors flex-grow">
                       {resource.description}
                     </p>
                   </div>
